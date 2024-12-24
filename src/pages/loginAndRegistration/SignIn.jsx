@@ -76,7 +76,7 @@ const SignIn = () => {
                         </div>
                     </form>
                     <p className="font-semibold text-center">Don’t Have An Account?
-                        <Link to="/register"><span className="text-red-500">Register</span></Link>
+                        <Link to="/register"><span className="text-red-500"> Register</span></Link>
                     </p>
                     <SocialLogin></SocialLogin>
                 </div>

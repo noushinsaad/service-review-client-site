@@ -24,10 +24,11 @@ const NavBar = () => {
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/services">Services</NavLink></li>
     </>
 
     return (
-        <div className="navbar bg-base-100 px-16">
+        <div className="navbar bg-base-100 md:px-16 py-8">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -51,12 +52,12 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">
-                    <img className='w-12' src={logo} alt="" />
-                    <Link to='/' className="text-3xl">ServeInsight</Link>
+                    <img className='w-10' src={logo} alt="" />
+                    <Link to='/' className="text-lg md:text-3xl">ServeInsight</Link>
                 </a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal rounded-full bg-gray-100 shadow-md px-4 py-2 space-x-6">
                     {links}
                 </ul>
             </div>
@@ -65,9 +66,9 @@ const NavBar = () => {
                     user ? <div className="flex items-center gap-2">
                         <div>
                             {user?.photoURL ? (
-                                <img className="w-[40px] h-[40px] rounded-full" src={user?.photoURL} alt="User" />
+                                <img className="w-[64px] h-[64px] rounded-full" src={user?.photoURL} alt="User" />
                             ) : (
-                                <img className="w-[40px] h-[40px] rounded-full" src={userIcon} alt="Default" />
+                                <img className="w-[64px] h-[64px] rounded-full" src={userIcon} alt="Default" />
                             )}
                         </div>
                         <button onClick={handleSignOut} className="btn">Sign out</button>
