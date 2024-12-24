@@ -5,19 +5,19 @@ import banner04 from '../../assets/banner/TransportationServices.jpg'
 
 const Banner = () => {
     return (
-        <div className="md:m-8 shadow-2xl p-8 rounded-lg" >
+        <div className="md:m-8 shadow-2xl p-8 rounded-lg bg-blue-50">
             <div className="carousel w-full">
-                {/* slide 1 */}
+                {/* Slide 1 */}
                 <div id="item1" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full">
-                    <div className='w-full md:w-1/2'>
+                    <div className="w-full md:w-1/2">
                         <img
                             src={banner01}
                             alt="Banner 1"
-                            className="w-full h-[350px] rounded-lg"
+                            className="w-full h-[350px] rounded-lg shadow-lg"
                         />
                     </div>
                     <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-6">
-                        <h2 className="text-3xl font-bold text-green-800 text-center">
+                        <h2 className="text-3xl font-bold text-blue-900 text-center">
                             Reliable Home and Maintenance Services
                         </h2>
                         <p className="text-gray-700 mt-4 text-center">
@@ -27,10 +27,10 @@ const Banner = () => {
                     </div>
                 </div>
 
-                {/* slide 2 */}
+                {/* Slide 2 */}
                 <div id="item2" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full">
                     <div className="md:w-1/2 flex flex-col items-center justify-center p-6">
-                        <h2 className="text-3xl font-bold text-green-800 text-center">
+                        <h2 className="text-3xl font-bold text-blue-900 text-center">
                             Empowering Minds Through Education
                         </h2>
                         <p className="text-gray-700 mt-4 text-center">
@@ -38,26 +38,26 @@ const Banner = () => {
                             and personalized learning solutions. Transform your potential into success with our trusted educational services.
                         </p>
                     </div>
-                    <div className='md:w-1/2'>
+                    <div className="md:w-1/2">
                         <img
                             src={banner02}
                             alt="Banner 2"
-                            className="w-full h-[350px] rounded-lg"
+                            className="w-full h-[350px] rounded-lg shadow-lg"
                         />
                     </div>
                 </div>
 
-                {/* slide 3 */}
+                {/* Slide 3 */}
                 <div id="item3" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full">
-                    <div className='md:w-1/2'>
+                    <div className="md:w-1/2">
                         <img
                             src={banner03}
                             alt="Banner 3"
-                            className="w-full h-[350px] rounded-lg"
+                            className="w-full h-[350px] rounded-lg shadow-lg"
                         />
                     </div>
                     <div className="md:w-1/2 flex flex-col items-center justify-center p-6">
-                        <h2 className="text-3xl font-bold text-green-800 text-center">
+                        <h2 className="text-3xl font-bold text-blue-900 text-center">
                             Innovative IT Solutions for Your Success
                         </h2>
                         <p className="text-gray-700 mt-4 text-center">
@@ -67,10 +67,10 @@ const Banner = () => {
                     </div>
                 </div>
 
-                {/* slide 4 */}
+                {/* Slide 4 */}
                 <div id="item4" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full">
                     <div className="md:w-1/2 flex flex-col items-center justify-center p-6">
-                        <h2 className="text-3xl font-bold text-green-800 text-center">
+                        <h2 className="text-3xl font-bold text-blue-900 text-center">
                             Effortless and Reliable Transportation
                         </h2>
                         <p className="text-gray-700 mt-4 text-center">
@@ -78,25 +78,33 @@ const Banner = () => {
                             it’s logistics, commuting, or leisure trips, we’ve got you covered for a smooth journey.
                         </p>
                     </div>
-                    <div className='md:w-1/2'>
+                    <div className="md:w-1/2">
                         <img
                             src={banner04}
                             alt="Banner 4"
-                            className="w-full h-[350px] rounded-lg"
+                            className="w-full h-[350px] rounded-lg shadow-lg"
                         />
                     </div>
-
                 </div>
             </div>
 
-            {/* navigation */}
+            {/* Navigation */}
             <div className="flex justify-center gap-2 py-2">
-                <a href="#item1" className="btn btn-xs rounded-full bg-green-200">1</a>
-                <a href="#item2" className="btn btn-xs rounded-full bg-green-200">2</a>
-                <a href="#item3" className="btn btn-xs rounded-full bg-green-200">3</a>
-                <a href="#item4" className="btn btn-xs rounded-full bg-green-200">4</a>
+                <a href="#item1" className="btn btn-xs rounded-full bg-green-500 text-white hover:bg-green-700">
+                    1
+                </a>
+                <a href="#item2" className="btn btn-xs rounded-full bg-green-500 text-white hover:bg-green-700">
+                    2
+                </a>
+                <a href="#item3" className="btn btn-xs rounded-full bg-green-500 text-white hover:bg-green-700">
+                    3
+                </a>
+                <a href="#item4" className="btn btn-xs rounded-full bg-green-500 text-white hover:bg-green-700">
+                    4
+                </a>
             </div>
         </div>
+
     );
 };
 

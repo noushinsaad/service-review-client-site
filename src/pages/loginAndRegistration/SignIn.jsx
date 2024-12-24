@@ -40,13 +40,13 @@ const SignIn = () => {
     }
 
     return (
-        <div className="hero bg-gradient-to-b from-green-500 to-gray-100 h-screen">
+        <div className="hero bg-blue-100 h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left w-96">
                     <Lottie animationData={loginLottieJSON}></Lottie>
                 </div>
-                <div className="card bg-base-100 w-full  shadow-2xl py-6 px-4">
-                    <h1 className="ml-8 mt-4 text-5xl font-bold">Login now!</h1>
+                <div className="card bg-blue-50 w-full  shadow-2xl py-6 px-4">
+                    <h1 className="ml-8 mt-4 text-5xl font-bold text-green-800">Login now!</h1>
                     <form onSubmit={handleSignIn} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -72,7 +72,7 @@ const SignIn = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary bg-[#34A853] hover:bg-[#2c8b4a]">Login</button>
                         </div>
                     </form>
                     <p className="font-semibold text-center">Don’t Have An Account?

@@ -5,10 +5,18 @@ import Footer from "../shared/Footer";
 
 const MainLayout = () => {
     return (
-        <div className='bg-gray-100'>
-            <NavBar></NavBar>
-            <Outlet></Outlet>
-            <Footer></Footer>
+        <div className="bg-blue-100">
+            <header className="sticky top-0 z-50 shadow-md">
+                <nav>
+                    <NavBar />
+                </nav>
+            </header>
+            <main>
+                <Outlet />
+            </main>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     );
 };

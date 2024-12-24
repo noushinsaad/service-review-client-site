@@ -60,62 +60,66 @@ const Register = () => {
     }
 
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="hero bg-blue-100 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left w-96">
                     <Lottie animationData={registerLottieData}></Lottie>
                 </div>
-                <div className="card bg-base-100 w-full  shadow-2xl py-6 px-4">
-                    <h1 className="ml-8 mt-4 text-5xl font-bold">Register now!</h1>
+                <div className="card bg-blue-50 w-full shadow-2xl py-6 px-4">
+                    <h1 className="ml-8 mt-4 text-5xl font-bold text-green-800">Register now!</h1>
                     <form onSubmit={handleRegister} className="card-body">
-                        {/* name */}
+                        {/* Name */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Name</span>
+                                <span className="label-text text-gray-800">Name</span>
                             </label>
-                            <input type="text" name='name' placeholder="name" className="input input-bordered" required />
+                            <input type="text" name="name" placeholder="name" className="input input-bordered" required />
                         </div>
 
-                        {/* email */}
+                        {/* Email */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text text-gray-800">Email</span>
                             </label>
-                            <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                         </div>
 
-                        {/* photo url */}
+                        {/* Photo URL */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Photo URL</span>
+                                <span className="label-text text-gray-800">Photo URL</span>
                             </label>
                             <input type="text" name="photo" placeholder="photo URL" className="input input-bordered" />
                         </div>
 
-                        {/* password */}
+                        {/* Password */}
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Password</span>
+                                <span className="label-text text-gray-800">Password</span>
                             </label>
-                            <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                         </div>
-                        {
-                            error.password && <label className="label text-xs text-red-500">
+                        {error.password && (
+                            <label className="label text-xs text-red-500">
                                 {error.password}
                             </label>
-                        }
+                        )}
 
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Register</button>
+                            <button className="btn btn-primary bg-[#34A853] hover:bg-[#2c8b4a]">Register</button>
                         </div>
                     </form>
-                    <p className="font-semibold text-center">Already Have An Account?
-                        <Link to="/signIn"><span className="text-red-500"> Login</span></Link>
+                    <p className="font-semibold text-center text-gray-700">
+                        Already Have An Account?
+                        <Link to="/signIn">
+                            <span className="text-[#D14334]"> Login</span>
+                        </Link>
                     </p>
                     <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
+
     );
 };
 
