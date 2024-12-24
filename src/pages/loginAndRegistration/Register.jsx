@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import SocialLogin from "../../shared/SocialLogin";
 
 
 const Register = () => {
@@ -64,7 +65,7 @@ const Register = () => {
                 <div className="text-center lg:text-left w-96">
                     <Lottie animationData={registerLottieData}></Lottie>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-6">
+                <div className="card bg-base-100 w-full  shadow-2xl py-6 px-4">
                     <h1 className="ml-8 mt-4 text-5xl font-bold">Register now!</h1>
                     <form onSubmit={handleRegister} className="card-body">
                         {/* name */}
@@ -111,7 +112,7 @@ const Register = () => {
                     <p className="font-semibold text-center">Already Have An Account?
                         <Link to="/signIn"><span className="text-red-500"> Login</span></Link>
                     </p>
-                    {/* <SocialLogin></SocialLogin> */}
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>

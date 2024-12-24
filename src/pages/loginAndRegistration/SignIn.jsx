@@ -1,15 +1,42 @@
 import Lottie from "lottie-react";
 import loginLottieJSON from '../../assets/lottie/login.json'
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import SocialLogin from "../../shared/SocialLogin";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const SignIn = () => {
-
+    const { setUser, signInUser } = useAuth();
     const [error, setError] = useState({})
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state || '/';
 
     const handleSignIn = e => {
         e.preventDefault();
+
+        const form = new FormData(e.target);
+        const email = form.get("email");
+        const password = form.get("password");
+
+        signInUser(email, password)
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Logged in Successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                navigate(from);
+            })
+            .catch(err => {
+                setError({ ...error, login: err.code })
+            })
     }
 
     return (
@@ -18,7 +45,7 @@ const SignIn = () => {
                 <div className="text-center lg:text-left w-96">
                     <Lottie animationData={loginLottieJSON}></Lottie>
                 </div>
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-4">
+                <div className="card bg-base-100 w-full  shadow-2xl py-6 px-4">
                     <h1 className="ml-8 mt-4 text-5xl font-bold">Login now!</h1>
                     <form onSubmit={handleSignIn} className="card-body">
                         <div className="form-control">
@@ -32,14 +59,14 @@ const SignIn = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" required />
-                            
+
                             {
                                 error.login &&
                                 <label className="label text-sm text-red-500">
                                     {error.login}
                                 </label>
                             }
-                            
+
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -51,7 +78,7 @@ const SignIn = () => {
                     <p className="font-semibold text-center">Don’t Have An Account?
                         <Link to="/register"><span className="text-red-500">Register</span></Link>
                     </p>
-                    {/* <SocialLogin></SocialLogin> */}
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>

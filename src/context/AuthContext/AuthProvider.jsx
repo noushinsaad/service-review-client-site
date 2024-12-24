@@ -20,12 +20,12 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, updatedData)
     }
 
-    const singInUser = (email, password) => {
+    const signInUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const singInWithGoogle = () => {
+    const signInWithGoogle = () => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider)
     }
@@ -51,9 +51,9 @@ const AuthProvider = ({ children }) => {
         setUser,
         loading,
         createUser,
-        singInUser,
+        signInUser,
         updateUserProfile,
-        singInWithGoogle,
+        signInWithGoogle,
         signOutUser
     }
     return (

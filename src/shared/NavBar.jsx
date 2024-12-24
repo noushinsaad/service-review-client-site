@@ -1,7 +1,26 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
+import userIcon from "../assets/user.png"
+import logo from '../assets/logo/large-logo.png'
 
 
 const NavBar = () => {
+
+    const { user, signOutUser } = useAuth();
+
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Log Out Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+    }
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -32,8 +51,8 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">
-                    {/* <img className='w-12' src={logo} alt="" /> */}
-                    <h3 className="text-3xl">ServeInsight</h3>
+                    <img className='w-12' src={logo} alt="" />
+                    <Link to='/' className="text-3xl">ServeInsight</Link>
                 </a>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -42,24 +61,27 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {/* {
-                    user ? <>
+                {
+                    user ? <div className="flex items-center gap-2">
+                        <div>
+                            {user?.photoURL ? (
+                                <img className="w-[40px] h-[40px] rounded-full" src={user?.photoURL} alt="User" />
+                            ) : (
+                                <img className="w-[40px] h-[40px] rounded-full" src={userIcon} alt="Default" />
+                            )}
+                        </div>
                         <button onClick={handleSignOut} className="btn">Sign out</button>
-                    </> : <>
-                        <Link to="/register">Register</Link>
-                        <Link to="/signIn">
-                            <button className="btn">Sign In</button>
-                        </Link>
-                    </>
-                } */}
-                <div className="flex gap-2">
-                    <Link to="/register">
-                        <button className="btn">Register</button>
-                    </Link>
-                    <Link to="/signIn">
-                        <button className="btn">Sign In</button>
-                    </Link>
-                </div>
+                    </div> :
+                        <div className="flex gap-2">
+                            <Link to="/register">
+                                <button className="btn">Register</button>
+                            </Link>
+                            <Link to="/signIn">
+                                <button className="btn">Sign In</button>
+                            </Link>
+                        </div>
+                }
+
 
             </div>
         </div>
