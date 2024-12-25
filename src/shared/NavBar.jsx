@@ -61,10 +61,10 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl text-blue-800">
-                    <img className="w-10" src={logo} alt="" />
+                <div className="btn btn-ghost text-xl text-blue-800">
+                    <img className="w-8 hidden md:block" src={logo} alt="" />
                     <Link to="/" className="text-lg md:text-3xl ml-2 hover:text-blue-600">ServeInsight</Link>
-                </a>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal rounded-xl bg-blue-200 shadow-md px-4 py-2 space-x-6 text-gray-900">

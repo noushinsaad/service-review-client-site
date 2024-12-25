@@ -40,12 +40,12 @@ const SignIn = () => {
     }
 
     return (
-        <div className="hero bg-blue-100 h-screen">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left w-96">
+        <div className="hero bg-blue-100 min-h-screen">
+            <div className="hero-content flex-col lg:flex-row-reverse p-4">
+                <div className="text-center lg:text-left w-full md:w-96">
                     <Lottie animationData={loginLottieJSON}></Lottie>
                 </div>
-                <div className="card bg-blue-50 w-full  shadow-2xl py-6 px-4">
+                <div className="card bg-blue-50 w-full shadow-2xl py-6 px-4">
                     <h1 className="ml-8 mt-4 text-5xl font-bold text-green-800">Login now!</h1>
                     <form onSubmit={handleSignIn} className="card-body">
                         <div className="form-control">
