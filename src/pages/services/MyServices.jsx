@@ -115,7 +115,7 @@ const MyServices = () => {
                             <th className="p-4 text-sm md:text-base">Index</th>
                             <th className="p-4 text-sm md:text-base">Service Title</th>
                             <th className="p-4 text-sm md:text-base">Added Date</th>
-                            <th className="p-4 text-sm md:text-base">Price per Month</th>
+                            <th className="p-4 text-sm md:text-base">Price (in BDT)</th>
                             <th className="p-4 text-sm md:text-base">Actions</th>
                         </tr>
                     </thead>
@@ -130,7 +130,7 @@ const MyServices = () => {
                                 <td className="p-4 text-gray-700 text-xs md:text-sm">{index + 1}</td>
                                 <td className="p-4 text-gray-800 text-xs md:text-sm">{service.title}</td>
                                 <td className="p-4 text-gray-600 text-xs md:text-sm">{service.addedDate}</td>
-                                <td className="p-4 text-gray-600 text-xs md:text-sm">{service.price} BDT</td>
+                                <td className="p-4 text-gray-600 text-xs md:text-sm">{service.price}</td>
                                 <td className="p-4">
                                     <div className="flex space-x-2">
                                         <button

@@ -147,7 +147,7 @@ const AddService = () => {
                                 min: { value: 0, message: "Price must be a positive number" },
                             })}
                             className="input input-bordered w-full border-2 border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
-                            placeholder="Price per month"
+                            placeholder="Add a price for the service"
                         />
                         {errors.price && <p className="text-sm text-red-500 mt-1">{errors.price.message}</p>}
                     </div>

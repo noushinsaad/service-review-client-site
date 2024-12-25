@@ -8,6 +8,8 @@ import ErrorPages from "../pages/ErrorPages/ErrorPages";
 import MyServices from "../pages/services/MyServices";
 import PrivateRouter from "./PrivateRouter";
 import AddServices from "../pages/services/AddServices";
+import ServiceDetails from "../pages/services/ServiceDetails";
+import MyReviews from "../pages/review/MyReviews";
 
 
 const Router = createBrowserRouter([
@@ -39,6 +41,15 @@ const Router = createBrowserRouter([
             {
                 path: 'add-services',
                 element: <PrivateRouter><AddServices></AddServices></PrivateRouter>
+            },
+            {
+                path: 'service-details/:id',
+                element: <ServiceDetails></ServiceDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+            },
+            {
+                path: 'my-reviews',
+                element: <PrivateRouter><MyReviews></MyReviews></PrivateRouter>
             }
         ]
     }

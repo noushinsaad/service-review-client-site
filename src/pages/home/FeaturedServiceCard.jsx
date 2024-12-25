@@ -24,7 +24,7 @@ const FeaturedServiceCard = ({ service }) => {
                 <p className="text-green-600 text-lg font-semibold mb-4">
                    Price: {price} BDT
                 </p>
-                <Link to={`/services/${_id}`}>
+                <Link to={`/service-details/${_id}`}>
                     <button 
                     className="px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-lg shadow-md hover:from-blue-500 hover:to-green-400 transition-all duration-300">
                         See Details

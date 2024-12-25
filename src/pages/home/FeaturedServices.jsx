@@ -9,7 +9,7 @@ const FeaturedServices = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/featuredServices')
+        axios.get('http://localhost:5000/services?featured=true')
             .then(res => {
                 setServices(res.data)
             })

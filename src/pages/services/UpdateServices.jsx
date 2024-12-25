@@ -24,7 +24,7 @@ const UpdateServices = ({ currentService, onClose, onSubmit }) => {
     return (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center z-50">
             <div className="h-3/4 w-full overflow-y-auto max-w-2xl bg-blue-50 rounded-3xl shadow-lg p-8 relative">
-                <h1 className="text-3xl font-extrabold text-gray-900 text-center mb-6">🔄 Update Service</h1>
+                <h1 className="text-3xl font-extrabold text-gray-900 text-center mb-6">🔄 Update Service Information</h1>
                 <form onSubmit={handleSubmit(onSubmitHandler)} className="space-y-6">
                     {/* Service Title */}
                     <div>
@@ -102,7 +102,7 @@ const UpdateServices = ({ currentService, onClose, onSubmit }) => {
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">📂 Category</label>
                         <select
-                            {...register("category", { required: "Category is required" })}
+                            {...register("category")}
                             disabled
                             className="select select-bordered w-full border-2 border-gray-300 rounded-lg focus:outline-none cursor-not-allowed"
                         >
