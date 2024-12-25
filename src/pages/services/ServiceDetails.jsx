@@ -13,7 +13,7 @@ const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/reviews?id=${id}`)
+        axios.get(`https://service-review-server-site-five.vercel.app/reviews?id=${id}`)
             .then(res => {
                 setReviews(res.data)
             })

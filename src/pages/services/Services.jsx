@@ -8,7 +8,7 @@ const Services = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/services')
+        axios.get('https://service-review-server-site-five.vercel.app/services')
             .then(res => {
                 setServices(res.data)
             })

@@ -25,7 +25,7 @@ const AddReview = ({ id, onAddReview }) => {
         };
 
         // console.log(newReview);
-        fetch(`http://localhost:5000/reviews`, {
+        fetch(`https://service-review-server-site-five.vercel.app/reviews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

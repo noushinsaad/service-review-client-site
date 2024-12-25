@@ -17,7 +17,7 @@ const MyServices = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/services?email=${user.email}`)
+        axios.get(`https://service-review-server-site-five.vercel.app/services?email=${user.email}`)
             .then(res => {
                 setServices(res.data)
                 setFilteredServices(res.data);
@@ -49,7 +49,7 @@ const MyServices = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/services/${id}`)
+                axios.delete(`https://service-review-server-site-five.vercel.app/services/${id}`)
                     .then(res => {
                         setFilteredServices(prevServices =>
                             prevServices.filter(service => service._id !== id)
@@ -73,7 +73,7 @@ const MyServices = () => {
     };
 
     const handleModalSubmit = (updatedService) => {
-        axios.put(`http://localhost:5000/services/${currentService._id}`, updatedService)
+        axios.put(`https://service-review-server-site-five.vercel.app/services/${currentService._id}`, updatedService)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     setServices(prevServices =>

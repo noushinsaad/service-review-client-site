@@ -14,7 +14,7 @@ const MyReviews = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/reviews?email=${user.email}`)
+        axios.get(`https://service-review-server-site-five.vercel.app/reviews?email=${user.email}`)
             .then(res => {
                 setReviews(res.data);
 
@@ -23,7 +23,7 @@ const MyReviews = () => {
                 // Fetch service details for these IDs
                 Promise.all(
                     serviceIds.map(serviceId =>
-                        axios.get(`http://localhost:5000/services/${serviceId}`)
+                        axios.get(`https://service-review-server-site-five.vercel.app/services/${serviceId}`)
                     )
                 ).then(serviceResponses => {
                     const servicesMap = {};
@@ -46,7 +46,7 @@ const MyReviews = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/reviews/${id}`)
+                axios.delete(`https://service-review-server-site-five.vercel.app/reviews/${id}`)
                     .then(res => {
                         setReviews(prevReviews => prevReviews.filter(
                             review => review._id !== id
@@ -69,7 +69,7 @@ const MyReviews = () => {
     }
 
     const handleModalSubmit = (updatedReview) => {
-        axios.put(`http://localhost:5000/reviews/${currentReview._id}`, updatedReview)
+        axios.put(`https://service-review-server-site-five.vercel.app/reviews/${currentReview._id}`, updatedReview)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     setReviews(prevReviews =>
