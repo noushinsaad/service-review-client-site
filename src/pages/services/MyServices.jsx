@@ -49,7 +49,6 @@ const MyServices = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-
                 axios.delete(`http://localhost:5000/services/${id}`)
                     .then(res => {
                         setFilteredServices(prevServices =>

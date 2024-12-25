@@ -47,7 +47,7 @@ const AddReview = ({ id, onAddReview }) => {
         <div className="mt-8 bg-blue-50 p-6 rounded-md shadow-lg">
             <h3 className="text-xl font-bold text-gray-800 mb-4">Add a Review</h3>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                {/* Text Review */}
+
                 <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                         Write a Review
@@ -67,7 +67,7 @@ const AddReview = ({ id, onAddReview }) => {
                     {errors.text && <p className="text-sm text-red-500 mt-1">{errors.text.message}</p>}
                 </div>
 
-                {/* Rating */}
+
                 <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Rating</label>
                     <ReactRating
@@ -84,7 +84,7 @@ const AddReview = ({ id, onAddReview }) => {
 
 
 
-                {/* Submit Button */}
+
                 <div>
                     <button
                         type="submit"
