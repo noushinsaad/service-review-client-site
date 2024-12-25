@@ -16,7 +16,7 @@ const Services = () => {
 
     return (
         <div className="mx-10 my-10">
-            <h2 className="text-3xl font-bold mb-10">Exceptional Services at a Glance</h2>
+            <h2 className="text-3xl font-bold mb-10">Services You’ll Love</h2>
             <div className="grid gap-6">
                 {
                     services.map(service => <ServiceCard key={service._id} service={service}>{service.titFeaturedServiceCard}</ServiceCard>)

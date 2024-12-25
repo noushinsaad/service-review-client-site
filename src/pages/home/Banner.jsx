@@ -8,7 +8,7 @@ const Banner = () => {
         <div className="md:m-8 shadow-2xl p-8 rounded-lg bg-blue-50">
             <div className="carousel w-full">
                 {/* Slide 1 */}
-                <div id="item1" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full">
+                <div id="item1" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full relative">
                     <div className="w-full md:w-1/2">
                         <img
                             src={banner01}
@@ -25,10 +25,14 @@ const Banner = () => {
                             Ensure your home stays in perfect condition with trusted services.
                         </p>
                     </div>
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#item4" className="btn btn-circle bg-transparent">❮</a>
+                        <a href="#item2" className="btn btn-circle bg-transparent">❯</a>
+                    </div>
                 </div>
 
                 {/* Slide 2 */}
-                <div id="item2" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full">
+                <div id="item2" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full relative">
                     <div className="md:w-1/2 flex flex-col items-center justify-center p-6">
                         <h2 className="text-3xl font-bold text-blue-900 text-center">
                             Empowering Minds Through Education
@@ -45,10 +49,14 @@ const Banner = () => {
                             className="w-full h-[350px] rounded-lg shadow-lg"
                         />
                     </div>
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#item1" className="btn btn-circle bg-transparent">❮</a>
+                        <a href="#item3" className="btn btn-circle bg-transparent">❯</a>
+                    </div>
                 </div>
 
                 {/* Slide 3 */}
-                <div id="item3" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full">
+                <div id="item3" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full relative">
                     <div className="md:w-1/2">
                         <img
                             src={banner03}
@@ -65,10 +73,14 @@ const Banner = () => {
                             cybersecurity, and technical support. Let us help you transform your ideas into powerful solutions.
                         </p>
                     </div>
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#item2" className="btn btn-circle bg-transparent">❮</a>
+                        <a href="#item4" className="btn btn-circle bg-transparent">❯</a>
+                    </div>
                 </div>
 
                 {/* Slide 4 */}
-                <div id="item4" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full">
+                <div id="item4" className="flex flex-col-reverse md:flex-row gap-2 carousel-item w-full relative">
                     <div className="md:w-1/2 flex flex-col items-center justify-center p-6">
                         <h2 className="text-3xl font-bold text-blue-900 text-center">
                             Effortless and Reliable Transportation
@@ -85,11 +97,15 @@ const Banner = () => {
                             className="w-full h-[350px] rounded-lg shadow-lg"
                         />
                     </div>
+                    <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a href="#item3" className="btn btn-circle bg-transparent">❮</a>
+                        <a href="#item1" className="btn btn-circle bg-transparent">❯</a>
+                    </div>
                 </div>
             </div>
 
             {/* Navigation */}
-            <div className="flex justify-center gap-2 py-2">
+            {/* <div className="flex justify-center gap-2 py-2">
                 <a href="#item1" className="btn btn-xs rounded-full bg-green-500 text-white hover:bg-green-700">
                     1
                 </a>
@@ -102,7 +118,7 @@ const Banner = () => {
                 <a href="#item4" className="btn btn-xs rounded-full bg-green-500 text-white hover:bg-green-700">
                     4
                 </a>
-            </div>
+            </div> */}
         </div>
 
     );
