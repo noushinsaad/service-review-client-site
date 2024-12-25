@@ -132,6 +132,7 @@ const AddService = () => {
                             <option value="Education">Education</option>
                             <option value="Finance">Finance</option>
                             <option value="Retail">Retail</option>
+                            <option value="Events">Events</option>
                             <option value="Other">Other</option>
                         </select>
                         {errors.category && <p className="text-sm text-red-500 mt-1">{errors.category.message}</p>}
@@ -147,7 +148,7 @@ const AddService = () => {
                                 min: { value: 0, message: "Price must be a positive number" },
                             })}
                             className="input input-bordered w-full border-2 border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
-                            placeholder="Enter the service price"
+                            placeholder="Price per month"
                         />
                         {errors.price && <p className="text-sm text-red-500 mt-1">{errors.price.message}</p>}
                     </div>
