@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import userIcon from "../assets/user.png"
 import logo from '../assets/logo/large-logo.png'
-import { easeOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 
 const NavBar = () => {

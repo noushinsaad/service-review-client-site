@@ -37,10 +37,10 @@ const Banner = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % 4);
+            setCurrentSlide((prev) => (prev + 1) % banners.length);
         }, 5000); // Change every 5 seconds
         return () => clearInterval(interval); // Cleanup interval on component unmount
-    }, [4]);
+    }, [banners.length]);
 
 
 
