@@ -4,6 +4,7 @@ import axios from "axios";
 import { FcSearch } from "react-icons/fc";
 import Swal from "sweetalert2";
 import UpdateServices from "./updateServices";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const MyServices = () => {
@@ -13,11 +14,13 @@ const MyServices = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [currentService, setCurrentService] = useState(null);
 
+    const axiosSecure = useAxiosSecure()
+
 
     const { user } = useAuth();
 
     useEffect(() => {
-        axios.get(`https://service-review-server-site-five.vercel.app/services?email=${user.email}`)
+        axiosSecure.get(`https://service-review-server-site-five.vercel.app/services?email=${user.email}`)
             .then(res => {
                 setServices(res.data)
                 setFilteredServices(res.data);

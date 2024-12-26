@@ -4,6 +4,7 @@ import axios from "axios";
 import ReviewCard from "./ReviewCard";
 import Swal from "sweetalert2";
 import UpdateReview from "./UpdateReview";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const MyReviews = () => {
@@ -12,9 +13,10 @@ const MyReviews = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [currentReview, setCurrentReview] = useState(null)
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
 
     useEffect(() => {
-        axios.get(`https://service-review-server-site-five.vercel.app/reviews?email=${user.email}`)
+        axiosSecure.get(`https://service-review-server-site-five.vercel.app/reviews?email=${user.email}`)
             .then(res => {
                 setReviews(res.data);
 
