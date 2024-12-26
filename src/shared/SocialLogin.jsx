@@ -1,6 +1,7 @@
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const SocialLogin = () => {
@@ -13,7 +14,20 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(result => {
-                console.log(result.user)
+                const user = result.user;
+                const createdAt = user.metadata?.creationTime;
+                const newUser = {
+                    name: user.displayName,
+                    email: user.email,
+                    createdAt
+                };
+
+                axios.post('https://service-review-server-site-five.vercel.app/users', newUser)
+                    .then(data => {
+                        if (data.data.insertedId) {
+                            console.log("Data added in then database")
+                        }
+                    })
                 navigate(from);
             })
             .catch(error => {

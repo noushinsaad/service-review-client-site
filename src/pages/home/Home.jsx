@@ -1,3 +1,4 @@
+import PlatformStats from "../../shared/PlatformStats";
 import Banner from "./Banner";
 import FeaturedServices from "./FeaturedServices";
 
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <FeaturedServices></FeaturedServices>
+            <PlatformStats></PlatformStats>
         </div>
     );
 };

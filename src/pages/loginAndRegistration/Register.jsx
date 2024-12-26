@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import SocialLogin from "../../shared/SocialLogin";
+import axios from "axios";
 
 
 const Register = () => {
@@ -36,6 +37,17 @@ const Register = () => {
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
+                const createdAt = result?.user?.metadata?.creationTime;
+
+                const newUser = { name, email, createdAt }
+
+                axios.post('https://service-review-server-site-five.vercel.app/users', newUser)
+                    .then(data => {
+                        if (data.data.insertedId) {
+                            console.log("Data added in then database")
+                        }
+                    })
+
                 setUser(user);
                 updateUserProfile({ displayName: name, photoURL: photo })
                     .then(() => {
