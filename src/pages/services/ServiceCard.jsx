@@ -2,38 +2,44 @@
 
 import { Link } from "react-router-dom";
 
-
 const ServiceCard = ({ service }) => {
     const { _id, title, image, description, price, category } = service;
 
     return (
-        <div
-            className="flex flex-col md:flex-row justify-center 
-            items-center relative bg-gradient-to-br from-blue-400 to-blue-100 
-            rounded-lg shadow-lg overflow-hidden group transform hover:scale-105 transition-transform duration-300 border border-gray-200">
-            <div className="p-6 md:w-1/2">
-                <img
-                    src={image}
-                    alt={title}
-                    className="w-full h-72 object-cover border-4 border-blue-400 rounded-md shadow-md"
-                />
-            </div>
-            <div className="p-6 md:w-1/2 flex flex-col justify-between">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors duration-300">
+        <div className="relative group w-full h-96 rounded-lg shadow-lg overflow-hidden">
+
+            <img
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+            />
+
+
+            <div className="absolute bottom-4 left-4 z-10">
+                <h3 className="text-xl font-bold text-white
+                 bg-gradient-to-r from-blue-500 to-purple-500 px-3 py-1 rounded-lg">
                     {title}
                 </h3>
-                <p className="text-gray-600 mb-4 text-justify">
-                    {description}
+            </div>
+
+
+            <div
+                className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 
+                group-hover:opacity-100 transition-opacity duration-500 text-white p-4"
+            >
+                <h3 className="text-2xl font-bold mb-2">{title}</h3>
+                <p className="text-sm mb-2 text-center">{description}</p>
+                <p className="text-md mb-1">
+                    <span className="font-semibold">Category:</span> {category}
                 </p>
-                <p className="text-blue-500 text-md font-semibold mb-2">
-                    Category: <span className="font-bold">{category}</span>
-                </p>
-                <p className="text-green-600 text-lg font-semibold mb-4">
+                <p className="text-lg font-semibold mb-4">
                     Price: {price} BDT
                 </p>
                 <Link to={`/service-details/${_id}`}>
                     <button
-                        className="px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-lg shadow-md hover:from-blue-500 hover:to-green-400 transition-all duration-300">
+                        className="px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold 
+                        rounded-lg shadow-md hover:from-blue-500 hover:to-green-400 transition-all duration-300"
+                    >
                         See Details
                     </button>
                 </Link>

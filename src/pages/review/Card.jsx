@@ -7,7 +7,7 @@ const Card = ({ review, service }) => {
             <div
                 className="bg-blue-50 shadow-lg rounded-lg p-6 border"
             >
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="text-2xl font-bold text-gray-800">
                     <strong>Service Title: </strong>  {service[review.serviceId] || "Service Title Not Available"}
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
@@ -15,7 +15,7 @@ const Card = ({ review, service }) => {
                 </p>
 
                 <p className="text-gray-700 mb-4">{review.text}</p>
-                <p className="text-gray-700 mb-4"><strong>Added By:</strong> {review.userEmail}</p>
+                <p className="text-gray-700 mb-4"><strong>Added Review By:</strong> {review.userEmail}</p>
 
                 <div className="flex items-center space-x-2">
                     <span className="font-semibold text-gray-700">Rating:</span>

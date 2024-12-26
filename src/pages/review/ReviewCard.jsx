@@ -8,7 +8,7 @@ const ReviewCard = ({ review, services, onUpdate, onDelete }) => {
     return (
         <div
             key={review._id}
-            className="bg-white shadow-lg rounded-lg p-6 border"
+            className="bg-blue-50 shadow-lg rounded-lg p-6 border"
         >
             <h3 className="text-xl font-bold text-gray-800">
                 <strong>Service Title: </strong>  {services[review.serviceId] || "Service Title Not Available"}
