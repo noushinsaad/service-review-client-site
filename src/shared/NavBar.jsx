@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import userIcon from "../assets/user.png"
 import logo from '../assets/logo/large-logo.png'
+import { easeOut, motion } from "framer-motion";
 
 
 const NavBar = () => {
@@ -61,10 +62,13 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <div className="btn btn-ghost text-xl text-blue-800">
+                <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
+                    className="btn btn-ghost text-xl text-blue-800">
                     <img className="w-8 hidden md:block" src={logo} alt="" />
                     <Link to="/" className="text-lg md:text-3xl ml-2 hover:text-blue-600">ServeInsight</Link>
-                </div>
+                </motion.div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal rounded-xl bg-blue-200 shadow-md px-4 py-2 space-x-6 text-gray-900">

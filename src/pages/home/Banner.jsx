@@ -3,6 +3,7 @@ import banner02 from '../../assets/banner/EducationalServicesa.jpeg';
 import banner03 from '../../assets/banner/IT_Service.jpg';
 import banner04 from '../../assets/banner/TransportationServices.jpg';
 import { useEffect, useState } from 'react';
+import { easeOut, motion } from "framer-motion";
 
 const Banner = () => {
     const banners = [
@@ -62,9 +63,12 @@ const Banner = () => {
                             />
                         </div>
                         <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-6">
-                            <h2 className="text-3xl font-bold text-blue-900 text-center">
+                            <motion.h2
+                                animate={{ color: ['#022ef0', '#857303', '#ff6133'] }}
+                                transition={{ duration: 3, ease: easeOut, repeat: Infinity }}
+                                className="text-3xl font-bold text-blue-900 text-center">
                                 {banner.title}
-                            </h2>
+                            </motion.h2>
                             <p className="text-gray-700 mt-4 text-center">
                                 {banner.description}
                             </p>
