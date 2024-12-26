@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
@@ -5,9 +6,10 @@ import { FcSearch } from "react-icons/fc";
 import Swal from "sweetalert2";
 import UpdateServices from "./updateServices";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 
-const MyServices = () => {
+const MyServices = ({title}) => {
     const [services, setServices] = useState([]);
     const [filteredServices, setFilteredServices] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
@@ -101,6 +103,11 @@ const MyServices = () => {
 
     return (
         <div className="bg-blue-50 p-8 rounded-lg shadow-md m-6">
+
+            <Helmet>
+                <title>{title || "My Services | ServeInsight"}</title>
+            </Helmet>
+
             <h2 className="text-3xl font-bold text-primary mb-6 text-center">My Services</h2>
             <div className="w-3/4 md:w-1/2 mx-auto my-4">
                 <label className="input input-bordered flex items-center gap-2">

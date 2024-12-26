@@ -6,9 +6,11 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import SocialLogin from "../../shared/SocialLogin";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 
-const Register = () => {
+// eslint-disable-next-line react/prop-types
+const Register = ({title}) => {
     const { createUser, setUser, updateUserProfile } = useAuth();
     const [error, setError] = useState({});
     const navigate = useNavigate();
@@ -73,6 +75,11 @@ const Register = () => {
 
     return (
         <div className="hero bg-blue-100 min-h-screen">
+
+            <Helmet>
+                <title>{title || "Register | ServeInsight"}</title>
+            </Helmet>
+
             <div className="hero-content flex-col lg:flex-row-reverse p-4">
                 <div className="text-center lg:text-left w-full md:w-96">
                     <Lottie animationData={registerLottieData}></Lottie>

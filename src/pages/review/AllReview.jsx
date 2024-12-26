@@ -1,9 +1,11 @@
 import axios from "axios";
 import Card from "./Card";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 
-const AllReview = () => {
+// eslint-disable-next-line react/prop-types
+const AllReview = ({title}) => {
     const [reviews, setReviews] = useState([]);
     const [services, setServices] = useState({});
 
@@ -29,6 +31,11 @@ const AllReview = () => {
 
     return (
         <div className="my-6 mx-10">
+
+            <Helmet>
+                <title>{title || "Reviews | ServeInsight"}</title>
+            </Helmet>
+
             <h2 className="text-3xl font-bold text-center mb-6">User Reviews and Ratings</h2>
             {reviews.length === 0 ? (
                 <p className="text-gray-500">No reviews till now</p>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
@@ -5,9 +6,10 @@ import ReviewCard from "./ReviewCard";
 import Swal from "sweetalert2";
 import UpdateReview from "./UpdateReview";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 
-const MyReviews = () => {
+const MyReviews = ({ title }) => {
     const [reviews, setReviews] = useState([]);
     const [services, setServices] = useState({});
     const [modalVisible, setModalVisible] = useState(false);
@@ -91,6 +93,11 @@ const MyReviews = () => {
 
     return (
         <div className="container mx-auto py-12 px-6">
+
+            <Helmet>
+                <title>{title || "My Reviews | ServeInsight"}</title>
+            </Helmet>
+
             <h1 className="text-3xl font-bold text-gray-800 mb-8">My Reviews</h1>
             {reviews.length === 0 ? (
                 <p className="text-gray-500">You haven&apos;t submitted any reviews yet!</p>

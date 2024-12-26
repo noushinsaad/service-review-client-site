@@ -1,26 +1,116 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ServiceCard from "./ServiceCard";
+import { FcSearch } from "react-icons/fc";
+import { Helmet } from "react-helmet";
 
-
-const Services = () => {
+const Services = ({ title }) => {
     const [services, setServices] = useState([]);
-
+    const [filteredServices, setFilteredServices] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("All");
 
     useEffect(() => {
+
         axios.get('https://service-review-server-site-five.vercel.app/services')
             .then(res => {
-                setServices(res.data)
+                setServices(res.data);
+                setFilteredServices(res.data);
+
+
+                const uniqueCategories = ["All", ...new Set(res.data.map(service => service.category))];
+                setCategories(uniqueCategories);
             })
-    }, [])
+            .catch(err => console.error(err));
+    }, []);
+
+    const handleSearch = async (e) => {
+        const query = e.target.value.trim();
+        setSearchQuery(query);
+
+        try {
+            const res = await axios.get(`https://service-review-server-site-five.vercel.app/services/search?query=${query}`);
+            let updatedServices = res.data;
+
+
+            if (selectedCategory !== "All") {
+                updatedServices = updatedServices.filter(service => service.category === selectedCategory);
+            }
+
+            setFilteredServices(updatedServices);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleCategoryChange = (e) => {
+        const category = e.target.value;
+        setSelectedCategory(category);
+
+
+        let updatedServices = services;
+
+
+        if (searchQuery) {
+            updatedServices = updatedServices.filter(service =>
+                service.title.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+        }
+
+
+        if (category !== "All") {
+            updatedServices = updatedServices.filter(service => service.category === category);
+        }
+
+        setFilteredServices(updatedServices);
+    };
 
     return (
         <div className="mx-10 my-10">
+
+            <Helmet>
+                <title>{title || "Services | ServeInsight"}</title>
+            </Helmet>
+
             <h2 className="text-3xl font-bold mb-10">Services You’ll Love</h2>
+
+
+            <div className="w-3/4 md:w-1/2 mx-auto my-8 flex flex-col gap-4 md:flex-row md:items-center md:gap-8">
+
+                <label className="input input-bordered flex items-center gap-2 grow">
+                    <input
+                        type="text"
+                        className="grow"
+                        value={searchQuery}
+                        onChange={handleSearch}
+                        placeholder="Search with Service Title"
+                    />
+                    <FcSearch />
+                </label>
+
+
+                <select
+                    className="select select-bordered"
+                    value={selectedCategory}
+                    onChange={handleCategoryChange}
+                >
+                    {categories.map((category, index) => (
+                        <option key={index} value={category}>{category}</option>
+                    ))}
+                </select>
+            </div>
+
+
             <div className="grid gap-6">
-                {
-                    services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
-                }
+                {filteredServices.length > 0 ? (
+                    filteredServices.map(service => (
+                        <ServiceCard key={service._id} service={service}></ServiceCard>
+                    ))
+                ) : (
+                    <p>No services found</p>
+                )}
             </div>
         </div>
     );

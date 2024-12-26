@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Lottie from "lottie-react";
 import loginLottieJSON from '../../assets/lottie/login.json'
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -5,9 +6,10 @@ import { useState } from "react";
 import SocialLogin from "../../shared/SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 
-const SignIn = () => {
+const SignIn = ({title}) => {
     const { setUser, signInUser } = useAuth();
     const [error, setError] = useState({})
     const location = useLocation();
@@ -41,6 +43,11 @@ const SignIn = () => {
 
     return (
         <div className="hero bg-blue-100 min-h-screen">
+
+            <Helmet>
+                <title>{title || "Signin | ServeInsight"}</title>
+            </Helmet>
+
             <div className="hero-content flex-col lg:flex-row-reverse p-4">
                 <div className="text-center lg:text-left w-full md:w-96">
                     <Lottie animationData={loginLottieJSON}></Lottie>

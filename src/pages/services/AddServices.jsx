@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
-const AddService = () => {
+const AddService = ({title}) => {
     const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -37,6 +39,10 @@ const AddService = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+
+            <Helmet>
+                <title>{title || "Add Services | ServeInsight"}</title>
+            </Helmet>
 
             <div className="w-full max-w-2xl bg-blue-50 rounded-3xl shadow-lg p-8">
                 <h1 className="text-3xl font-extrabold text-gray-900 text-center mb-6">
