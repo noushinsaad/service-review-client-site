@@ -8,7 +8,7 @@ import axios from "axios";
 
 const ServiceDetails = () => {
     const { user } = useAuth();
-    const service = useLoaderData();
+    const [service, setService] = useState(useLoaderData());
     const id = service._id
     const [reviews, setReviews] = useState([]);
 
@@ -27,6 +27,7 @@ const ServiceDetails = () => {
 
     return (
         <div className="container mx-auto py-12 px-6">
+            {/* Service Details */}
             <div className="bg-blue-50 shadow-lg rounded-lg p-6 mb-6">
                 <h1 className="text-3xl font-bold text-gray-800">{service.title}</h1>
                 <img src={service.image} alt={service.title} className="w-full h-64 object-cover rounded-lg mt-4" />
@@ -50,7 +51,7 @@ const ServiceDetails = () => {
                     <strong>Added On:</strong> {service.addedDate}
                 </p>
                 <p className="mt-2">
-                    {/* <strong>Total Reviews:</strong> {reviews.length} */}
+                    <strong>Total Reviews:</strong> {service.reviewCount ?? 0}
                 </p>
             </div>
 
@@ -63,7 +64,7 @@ const ServiceDetails = () => {
             {/* Add Review */}
             {
                 user && <div>
-                    <AddReview id={id} onAddReview={handleAddReview}></AddReview>
+                    <AddReview id={id} onAddReview={handleAddReview} setService={setService}></AddReview>
                 </div>
             }
         </div>

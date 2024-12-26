@@ -5,7 +5,7 @@ import ReactRating from "react-rating";
 import { useForm } from "react-hook-form";
 
 
-const AddReview = ({ id, onAddReview }) => {
+const AddReview = ({ id, onAddReview, setService }) => {
     const { user } = useAuth()
     // const [reviews, setReviews] = useState([]);
     const { register, handleSubmit, watch, reset, setValue, formState: { errors } } = useForm();
@@ -39,6 +39,7 @@ const AddReview = ({ id, onAddReview }) => {
                     // setReviews((prev) => [...prev, newReview]);
                     reset();
                     onAddReview(newReview)
+                    setService(data.updatedService)
                 }
             });
     };
