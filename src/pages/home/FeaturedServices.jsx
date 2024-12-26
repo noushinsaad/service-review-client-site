@@ -20,7 +20,7 @@ const FeaturedServices = () => {
             <h2 className="text-3xl font-bold mb-10">Exceptional Services at a Glance</h2>
             <div className="grid md:grid-cols-2 gap-6">
                 {
-                    services.map(service => <ServiceCard key={service._id} service={service}>{service.titFeaturedServiceCard}</ServiceCard>)
+                    services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                 }
             </div>
             <div className="flex justify-end mt-4" data-aos="fade-right">

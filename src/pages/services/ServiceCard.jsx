@@ -7,7 +7,10 @@ const ServiceCard = ({ service }) => {
     const { _id, title, image, description, price, category } = service;
 
     return (
-        <div className="flex flex-col md:flex-row justify-center items-center relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg shadow-lg overflow-hidden group transform hover:scale-105 transition-transform duration-300 border border-gray-200">
+        <div
+            className="flex flex-col md:flex-row justify-center 
+            items-center relative bg-gradient-to-br from-blue-400 to-blue-100 
+            rounded-lg shadow-lg overflow-hidden group transform hover:scale-105 transition-transform duration-300 border border-gray-200">
             <div className="p-6 md:w-1/2">
                 <img
                     src={image}
@@ -26,7 +29,7 @@ const ServiceCard = ({ service }) => {
                     Category: <span className="font-bold">{category}</span>
                 </p>
                 <p className="text-green-600 text-lg font-semibold mb-4">
-                   Price: {price} BDT
+                    Price: {price} BDT
                 </p>
                 <Link to={`/service-details/${_id}`}>
                     <button

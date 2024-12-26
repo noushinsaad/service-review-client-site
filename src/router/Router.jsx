@@ -10,6 +10,7 @@ import PrivateRouter from "./PrivateRouter";
 import AddServices from "../pages/services/AddServices";
 import ServiceDetails from "../pages/services/ServiceDetails";
 import MyReviews from "../pages/review/MyReviews";
+import AllReview from "../pages/review/AllReview";
 
 
 const Router = createBrowserRouter([
@@ -50,6 +51,10 @@ const Router = createBrowserRouter([
             {
                 path: 'my-reviews',
                 element: <PrivateRouter><MyReviews></MyReviews></PrivateRouter>
+            },
+            {
+                path: 'reviews',
+                element: <AllReview></AllReview>,
             }
         ]
     }

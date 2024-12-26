@@ -16,7 +16,9 @@ const PlatformStats = () => {
     }, []);
 
     return (
-        <div className="flex flex-wrap flex-col md:flex-row justify-around bg-blue-50 p-8 rounded-lg shadow-md mx-10 my-4">
+        <div
+            className="flex flex-wrap flex-col md:flex-row justify-around bg-blue-200 p-8 rounded-lg shadow-md mx-10 my-4
+            group transform hover:scale-105 transition-transform duration-300 border border-gray-200">
             <div className="text-center m-4">
                 <h3 className="text-2xl font-bold text-primary">Users</h3>
                 <p className="text-4xl font-semibold text-gray-700">
