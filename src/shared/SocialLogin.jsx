@@ -36,13 +36,13 @@ const SocialLogin = () => {
     }
 
     return (
-        <div className="text-center">
+        <div className="text-center px-8">
             <div className="divider my-6">or</div>
             <button
                 onClick={handleGoogleSignIn}
                 className="btn btn-outline flex items-center justify-center w-full rounded-md"
             >
-                <FcGoogle className="mr-2 text-2xl" />
+                <FcGoogle className="text-2xl" />
                 Login with Google
             </button>
         </div>

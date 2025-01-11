@@ -95,17 +95,17 @@ const NavBar = () => {
                         </div>
                         <button
                             onClick={handleSignOut}
-                            className="btn bg-amber-500 hover:bg-amber-600 text-white">
+                            className="btn bg-[#34A853] hover:bg-[#2c8b4a] text-white">
                             Sign out
                         </button>
                     </div>
                 ) : (
                     <div className="flex gap-2">
                         <Link to="/register">
-                            <button className="btn bg-amber-500 hover:bg-amber-600 text-white">Register</button>
+                            <button className="btn bg-[#34A853] hover:bg-[#2c8b4a] text-white">Register</button>
                         </Link>
                         <Link to="/signIn">
-                            <button className="btn bg-amber-500 hover:bg-amber-600 text-white">Sign In</button>
+                            <button className="btn bg-[#34A853] hover:bg-[#2c8b4a] text-white">Sign In</button>
                         </Link>
                     </div>
                 )}

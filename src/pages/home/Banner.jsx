@@ -46,7 +46,7 @@ const Banner = () => {
 
     return (
         <div className="md:m-8 shadow-2xl p-8 rounded-lg bg-blue-50">
-            <div className="carousel w-full">
+            <div className="carousel w-full h-[380px]">
                 {banners.map((banner, index) => (
                     <div
                         key={banner.id}
@@ -55,7 +55,7 @@ const Banner = () => {
                             } gap-2 carousel-item w-full relative ${currentSlide === index ? "block" : "hidden"
                             }`}
                     >
-                        <div className="w-full md:w-1/2">
+                        <div className="w-full md:w-1/2 h-[350px]">
                             <img
                                 src={banner.image}
                                 alt={`Banner ${index + 1}`}
@@ -79,7 +79,7 @@ const Banner = () => {
 
 
             {/* Navigation */}
-            <div className="flex justify-center gap-2 py-2">
+            <div className="flex justify-center gap-2">
                 {banners.map((_, index) => (
                     <button
                         key={index}

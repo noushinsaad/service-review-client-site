@@ -11,14 +11,14 @@ const Services = ({ title }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
+    const [currentPage, setCurrentPage] = useState(1);
+    const servicesPerPage = 4;
 
     useEffect(() => {
-
         axios.get('https://service-review-server-site-five.vercel.app/services')
             .then(res => {
                 setServices(res.data);
                 setFilteredServices(res.data);
-
 
                 const uniqueCategories = ["All", ...new Set(res.data.map(service => service.category))];
                 setCategories(uniqueCategories);
@@ -34,12 +34,12 @@ const Services = ({ title }) => {
             const res = await axios.get(`https://service-review-server-site-five.vercel.app/services/search?query=${query}`);
             let updatedServices = res.data;
 
-
             if (selectedCategory !== "All") {
                 updatedServices = updatedServices.filter(service => service.category === selectedCategory);
             }
 
             setFilteredServices(updatedServices);
+            setCurrentPage(1);
         } catch (err) {
             console.error(err);
         }
@@ -49,9 +49,7 @@ const Services = ({ title }) => {
         const category = e.target.value;
         setSelectedCategory(category);
 
-
         let updatedServices = services;
-
 
         if (searchQuery) {
             updatedServices = updatedServices.filter(service =>
@@ -59,12 +57,22 @@ const Services = ({ title }) => {
             );
         }
 
-
         if (category !== "All") {
             updatedServices = updatedServices.filter(service => service.category === category);
         }
 
         setFilteredServices(updatedServices);
+        setCurrentPage(1);
+    };
+
+    const indexOfLastService = currentPage * servicesPerPage;
+    const indexOfFirstService = indexOfLastService - servicesPerPage;
+    const currentServices = filteredServices.slice(indexOfFirstService, indexOfLastService);
+
+    const totalPages = Math.ceil(filteredServices.length / servicesPerPage);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
     };
 
     return (
@@ -76,9 +84,7 @@ const Services = ({ title }) => {
 
             <h2 className="text-3xl font-bold mb-10">Services You’ll Love</h2>
 
-
             <div className="w-3/4 md:w-1/2 mx-auto my-8 flex flex-col gap-4 md:flex-row md:items-center md:gap-8">
-
                 <label className="input input-bordered flex items-center gap-2 grow">
                     <input
                         type="text"
@@ -89,7 +95,6 @@ const Services = ({ title }) => {
                     />
                     <FcSearch />
                 </label>
-
 
                 <select
                     className="select select-bordered"
@@ -102,15 +107,28 @@ const Services = ({ title }) => {
                 </select>
             </div>
 
-
             <div className="grid gap-6">
-                {filteredServices.length > 0 ? (
-                    filteredServices.map(service => (
+                {currentServices.length > 0 ? (
+                    currentServices.map(service => (
                         <ServiceCard key={service._id} service={service}></ServiceCard>
                     ))
                 ) : (
                     <p>No services found</p>
                 )}
+            </div>
+
+            <div className="flex justify-center mt-8">
+                {[...Array(totalPages).keys()].map(pageNumber => (
+                    <button
+                        key={pageNumber + 1}
+                        onClick={() => handlePageChange(pageNumber + 1)}
+                        className={`btn ${currentPage === pageNumber + 1 ?
+                            "btn bg-[#34A853] hover:bg-[#2c8b4a] text-white" :
+                            "btn bg-amber-500 hover:bg-amber-600 text-white"} mx-1`}
+                    >
+                        {pageNumber + 1}
+                    </button>
+                ))}
             </div>
         </div>
     );

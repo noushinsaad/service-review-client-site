@@ -79,7 +79,7 @@ const SignIn = ({title}) => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary bg-[#34A853] hover:bg-[#2c8b4a]">Login</button>
+                            <button className="btn btn-primary text-white font-semibold bg-[#34A853] hover:bg-[#2c8b4a]">Login</button>
                         </div>
                     </form>
                     <p className="font-semibold text-center">Don’t Have An Account?
