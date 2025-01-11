@@ -46,7 +46,7 @@ const Banner = () => {
 
     return (
         <div className="md:m-8 shadow-2xl p-8 rounded-lg bg-blue-50">
-            <div className="carousel w-full h-[380px]">
+            <div className="carousel w-full md:h-[380px]">
                 {banners.map((banner, index) => (
                     <div
                         key={banner.id}
@@ -79,7 +79,7 @@ const Banner = () => {
 
 
             {/* Navigation */}
-            <div className="flex justify-center gap-2">
+            <div className="flex justify-center gap-2 mt-3">
                 {banners.map((_, index) => (
                     <button
                         key={index}

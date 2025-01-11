@@ -36,7 +36,7 @@ const FeaturedServices = () => {
                 effect={'cards'}
                 grabCursor={true}
                 modules={[EffectCards]}
-                className="mySwiper max-w-6xl"
+                className="mySwiper w-[90%] mx-auto md:max-w-6xl"
             >
                     {
                         services.map(service => <SwiperSlide key={service._id}>
