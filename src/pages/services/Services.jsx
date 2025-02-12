@@ -12,12 +12,13 @@ const Services = ({ title }) => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
+    const [sortOrder, setSortOrder] = useState("asc");
 
     const servicesPerPage = 4;
 
     useEffect(() => {
-        setLoading(true); 
+        setLoading(true);
         axios.get("https://service-review-server-site-five.vercel.app/services")
             .then(res => {
                 setServices(res.data);
@@ -27,14 +28,14 @@ const Services = ({ title }) => {
                 setCategories(uniqueCategories);
             })
             .catch(err => console.error(err))
-            .finally(() => setLoading(false)); 
+            .finally(() => setLoading(false));
     }, []);
 
     const handleSearch = async (e) => {
         const query = e.target.value.trim();
         setSearchQuery(query);
 
-        setLoading(true); 
+        setLoading(true);
 
         try {
             const res = await axios.get(`https://service-review-server-site-five.vercel.app/services/search?query=${query}`);
@@ -49,7 +50,7 @@ const Services = ({ title }) => {
         } catch (err) {
             console.error(err);
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     };
 
@@ -71,6 +72,14 @@ const Services = ({ title }) => {
 
         setFilteredServices(updatedServices);
         setCurrentPage(1);
+    };
+
+    const handleSort = () => {
+        const sortedServices = [...filteredServices].sort((a, b) => {
+            return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
+        });
+        setFilteredServices(sortedServices);
+        setSortOrder(sortOrder === "asc" ? "desc" : "asc");
     };
 
     const indexOfLastService = currentPage * servicesPerPage;
@@ -114,7 +123,16 @@ const Services = ({ title }) => {
                 </select>
             </div>
 
-            {loading ? ( // ✅ Show loader while data is loading
+            <div className="flex justify-center mb-6">
+                <button
+                    className="btn bg-blue-500 hover:bg-blue-600 text-white"
+                    onClick={handleSort}
+                >
+                    Sort by Price ({sortOrder === "asc" ? "Ascending" : "Descending"})
+                </button>
+            </div>
+
+            {loading ? ( 
                 <div className="flex justify-center items-center h-40">
                     <span className="loading loading-spinner loading-lg"></span>
                 </div>
