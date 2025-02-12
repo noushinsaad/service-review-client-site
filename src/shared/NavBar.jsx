@@ -26,6 +26,7 @@ const NavBar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/services">Services</NavLink></li>
+        <li><NavLink to="/aboutUs">About Us</NavLink></li>
         {user && (
             <>
                 <li><NavLink to="/add-services">Add Services</NavLink></li>
@@ -36,7 +37,7 @@ const NavBar = () => {
     </>
 
     return (
-        <div className="navbar bg-white rounded-xl shadow-md md:px-10">
+        <div className="navbar bg-blue-50 rounded-lg shadow-md md:px-10">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div
@@ -66,12 +67,12 @@ const NavBar = () => {
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
                     className="btn btn-ghost text-xl text-blue-800">
-                    <img className="w-8 hidden md:block" src={logo} alt="" />
-                    <Link to="/" className="text-lg md:text-3xl ml-2 hover:text-blue-600">ServeInsight</Link>
+                    <img className="w-6 md:w-8 md:block" src={logo} alt="" />
+                    <Link to="/" className="text-lg md:text-3xl hover:text-blue-600">ServeInsight</Link>
                 </motion.div>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal rounded-xl bg-blue-200 shadow-md px-4 py-2 space-x-6 text-gray-900">
+                <ul className="menu menu-horizontal px-4 py-2 space-x-6 text-gray-900">
                     {links}
                 </ul>
             </div>

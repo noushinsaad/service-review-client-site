@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Lottie from "lottie-react";
 import registerLottieData from '../../assets/lottie/register.json';
 import { Link, useNavigate } from "react-router-dom";
@@ -9,8 +10,6 @@ import logo from '../../assets/logo/large-logo.png';
 import axios from "axios";
 import { Helmet } from "react-helmet";
 
-
-// eslint-disable-next-line react/prop-types
 const Register = ({ title }) => {
     const { createUser, setUser, updateUserProfile } = useAuth();
     const [error, setError] = useState({});
@@ -27,7 +26,7 @@ const Register = ({ title }) => {
         const password = form.get("password");
 
         if (password.length <= 6) {
-            setError({ ...error, password: "must be 6 OR more than 6 characters long" });
+            setError({ ...error, password: "Must be 6 or more characters long" });
             return;
         }
 
@@ -47,9 +46,9 @@ const Register = ({ title }) => {
                 axios.post('https://service-review-server-site-five.vercel.app/users', newUser)
                     .then(data => {
                         if (data.data.insertedId) {
-                            console.log("Data added in then database")
+                            console.log("Data added in the database");
                         }
-                    })
+                    });
 
                 setUser(user);
                 updateUserProfile({ displayName: name, photoURL: photo })
@@ -61,22 +60,15 @@ const Register = ({ title }) => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        navigate('/')
+                        navigate('/');
                     })
-                    .catch(err => {
-                        console.log(err)
-                    })
-
+                    .catch(err => console.log(err));
             })
-            .catch(err => {
-                setError({ ...error, register: err.code })
-            })
-
-    }
+            .catch(err => setError({ ...error, register: err.code }));
+    };
 
     return (
         <div className="hero bg-blue-100 min-h-screen flex flex-col items-center justify-center">
-
             <Helmet>
                 <title>{title || "Register | ServeInsight"}</title>
             </Helmet>
@@ -92,61 +84,68 @@ const Register = ({ title }) => {
                 <div className="text-center lg:text-left w-full md:w-96">
                     <Lottie animationData={registerLottieData}></Lottie>
                 </div>
-                <div className="card bg-blue-50 w-full shadow-2xl py-6 px-4">
-                    <h1 className="ml-8 mt-4 text-5xl font-bold text-green-800">Register now!</h1>
+                <div className="card bg-blue-50 w-full shadow-2xl py-6 px-6">
+                    <h1 className="text-center text-4xl font-bold text-green-800 mb-4">Register now!</h1>
                     <form onSubmit={handleRegister} className="card-body">
-                        {/* Name */}
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-gray-800">Name</span>
-                            </label>
-                            <input type="text" name="name" placeholder="name" className="input input-bordered" required />
+
+                        <div className="flex flex-col md:flex-row gap-4">
+                            {/* Name */}
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text text-gray-800">Name</span>
+                                </label>
+                                <input type="text" name="name" placeholder="Full Name" className="input input-bordered w-full" required />
+                            </div>
+
+                            {/* Photo URL */}
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text text-gray-800">Photo URL</span>
+                                </label>
+                                <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered w-full" />
+                            </div>
                         </div>
 
                         {/* Email */}
-                        <div className="form-control">
+                        <div className="form-control mt-4">
                             <label className="label">
                                 <span className="label-text text-gray-800">Email</span>
                             </label>
-                            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
-                        </div>
-
-                        {/* Photo URL */}
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text text-gray-800">Photo URL</span>
-                            </label>
-                            <input type="text" name="photo" placeholder="photo URL" className="input input-bordered" />
+                            <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
                         </div>
 
                         {/* Password */}
-                        <div className="form-control">
+                        <div className="form-control mt-4">
                             <label className="label">
                                 <span className="label-text text-gray-800">Password</span>
                             </label>
-                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" name="password" placeholder="Password" className="input input-bordered" required />
+                            {error.password && (
+                                <label className="label text-xs text-red-500">{error.password}</label>
+                            )}
                         </div>
-                        {error.password && (
-                            <label className="label text-xs text-red-500">
-                                {error.password}
-                            </label>
-                        )}
 
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary text-white font-semibold bg-[#34A853] hover:bg-[#2c8b4a]">Register</button>
+                        {/* Register Button */}
+                        <div className="form-control mt-4">
+                            <button className="btn btn-primary text-white font-semibold bg-[#34A853] hover:bg-[#2c8b4a]">
+                                Register
+                            </button>
                         </div>
                     </form>
-                    <p className="font-semibold text-center text-gray-700">
+
+                    {/* Already Have Account */}
+                    <p className="font-semibold text-center text-gray-700 mt-2">
                         Already Have An Account?
                         <Link to="/signIn">
                             <span className="text-[#D14334]"> Login</span>
                         </Link>
                     </p>
+
+                    {/* Social Login */}
                     <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
-
     );
 };
 

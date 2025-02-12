@@ -11,6 +11,7 @@ import AddServices from "../pages/services/AddServices";
 import ServiceDetails from "../pages/services/ServiceDetails";
 import MyReviews from "../pages/review/MyReviews";
 import AllReview from "../pages/review/AllReview";
+import AboutUs from "../pages/aboutUs/AboutUs";
 
 
 const Router = createBrowserRouter([
@@ -55,6 +56,10 @@ const Router = createBrowserRouter([
             {
                 path: 'reviews',
                 element: <AllReview></AllReview>,
+            },
+            {
+                path: 'aboutUs',
+                element: <AboutUs></AboutUs>,
             }
         ]
     }
