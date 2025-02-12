@@ -5,12 +5,13 @@ import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import SocialLogin from "../../shared/SocialLogin";
+import logo from '../../assets/logo/large-logo.png';
 import axios from "axios";
 import { Helmet } from "react-helmet";
 
 
 // eslint-disable-next-line react/prop-types
-const Register = ({title}) => {
+const Register = ({ title }) => {
     const { createUser, setUser, updateUserProfile } = useAuth();
     const [error, setError] = useState({});
     const navigate = useNavigate();
@@ -74,11 +75,18 @@ const Register = ({title}) => {
     }
 
     return (
-        <div className="hero bg-blue-100 min-h-screen">
+        <div className="hero bg-blue-100 min-h-screen flex flex-col items-center justify-center">
 
             <Helmet>
                 <title>{title || "Register | ServeInsight"}</title>
             </Helmet>
+
+            <div className="text-center my-4">
+                <img className="w-16 mx-auto" src={logo} alt="ServeInsight Logo" />
+                <Link to="/" className="text-3xl md:text-4xl font-bold text-blue-800">
+                    ServeInsight
+                </Link>
+            </div>
 
             <div className="hero-content flex-col lg:flex-row-reverse p-4">
                 <div className="text-center lg:text-left w-full md:w-96">
