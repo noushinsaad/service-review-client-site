@@ -59,7 +59,7 @@ const Banner = () => {
                             <img
                                 src={banner.image}
                                 alt={`Banner ${index + 1}`}
-                                className="w-full h-[350px] rounded-lg shadow-lg"
+                                className="w-full h-[350px] border-4 border-red-400 rounded-lg shadow-lg"
                             />
                         </div>
                         <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-6">
