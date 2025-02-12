@@ -19,7 +19,7 @@ const FeaturedServices = () => {
 
     return (
         <div className="mx-10">
-            <h2 className="text-3xl font-bold mb-10">Exceptional Services at a Glance</h2>
+            <h2 className="text-3xl font-bold my-10">Exceptional Services at a Glance</h2>
             <Swiper
                 effect="coverflow"
                 grabCursor={true}

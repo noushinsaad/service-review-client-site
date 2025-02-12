@@ -1,8 +1,14 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
-const AboutUs = () => {
+const AboutUs = ({title}) => {
+    const { user } = useAuth();
+
     const [stats, setStats] = useState({
         userCount: 0,
         reviewsCount: 0,
@@ -15,8 +21,27 @@ const AboutUs = () => {
             .catch(err => console.error(err));
     }, []);
 
+    const handleStartExploringClick = (e) => {
+        if (user) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'You are already logged in!',
+                text: 'Redirecting to the HomePage...',
+                icon: 'info',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                
+                window.location.href = '/';
+            });
+        }
+   
+    };
+
     return (
         <div className="max-w-6xl mx-auto px-6 py-12 space-y-20">
+            <Helmet>
+                <title>{title || "About Us | ServeInsight"}</title>
+            </Helmet>
 
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -186,14 +211,15 @@ const AboutUs = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-green-500 animate-gradient-x"></div>
                 <div className="relative py-16 px-8 text-center">
                     <h3 className="text-4xl font-bold text-white mb-6">
-                        Join {stats.userCount-1}+ Trusted Members
+                        Join {stats.userCount - 1}+ Trusted Members
                     </h3>
                     <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <motion.a
-                            href="/register"
+                            href={user ? "#" : "/register"} 
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold flex items-center gap-2"
+                            onClick={handleStartExploringClick}
                         >
                             Start Exploring 🌟
                         </motion.a>
