@@ -8,7 +8,11 @@ const PrivateRouter = ({ children }) => {
     console.log(location)
 
     if (loading) {
-        return <span className="loading loading-ring loading-lg"></span>
+        return (
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <span className="loading loading-ring loading-lg text-white"></span>
+            </div>
+        );
     }
 
     if (user) {

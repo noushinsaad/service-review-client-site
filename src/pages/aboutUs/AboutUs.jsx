@@ -91,7 +91,7 @@ const AboutUs = ({title}) => {
                         <h3 className="text-3xl font-semibold text-blue-700">Who We Are</h3>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
-                        ServeInsight is a <span className="font-bold text-blue-800">community-driven platform</span> 
+                        ServeInsight is a <span className="font-bold text-blue-800">community-driven platform </span> 
                         where authentic experiences shape service discovery.
                         We empower users with <span className="bg-blue-100 px-2 rounded">real-time insights</span> 
                         and <span className="bg-blue-100 px-2 rounded">verified reviews</span> to make confident decisions.
@@ -112,9 +112,9 @@ const AboutUs = ({title}) => {
                     </div>
                     <p className="text-gray-700 leading-relaxed">
                         To create a <span className="font-bold text-blue-800">transparent ecosystem</span> where every review matters. 
-                        We&apos;re building bridges between
-                        <span className="border-b-2 border-blue-300">quality services</span> 
-                        and <span className="border-b-2 border-blue-300">informed users</span> through genuine community engagement.
+                        We&apos;re building bridges between 
+                        <span className="border-b-2 border-blue-300"> quality services </span> 
+                         and <span className="border-b-2 border-blue-300">informed users</span> through genuine community engagement.
                     </p>
                 </motion.div>
             </div>
