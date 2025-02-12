@@ -8,40 +8,35 @@ import UpdateServices from "./updateServices";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet";
 
-
-const MyServices = ({title}) => {
+const MyServices = ({ title }) => {
     const [services, setServices] = useState([]);
     const [filteredServices, setFilteredServices] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [modalVisible, setModalVisible] = useState(false);
     const [currentService, setCurrentService] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const axiosSecure = useAxiosSecure()
-
-
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
     useEffect(() => {
+        setLoading(true);
+
         axiosSecure.get(`https://service-review-server-site-five.vercel.app/services?email=${user.email}`)
             .then(res => {
-                setServices(res.data)
+                setServices(res.data);
                 setFilteredServices(res.data);
-            });
+            })
+            .catch(err => console.error(err))
+            .finally(() => setLoading(false));
     }, [user.email]);
-
-
 
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         setSearchQuery(query);
-
-
-        const filtered = services.filter(service =>
-            service.title.toLowerCase().includes(query)
-        );
+        const filtered = services.filter(service => service.title.toLowerCase().includes(query));
         setFilteredServices(filtered);
-
-    }
+    };
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -56,10 +51,7 @@ const MyServices = ({title}) => {
             if (result.isConfirmed) {
                 axios.delete(`https://service-review-server-site-five.vercel.app/services/${id}`)
                     .then(res => {
-                        setFilteredServices(prevServices =>
-                            prevServices.filter(service => service._id !== id)
-                        );
-                        // console.log(res.data)
+                        setFilteredServices(prevServices => prevServices.filter(service => service._id !== id));
                         if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
@@ -67,10 +59,10 @@ const MyServices = ({title}) => {
                                 icon: "success"
                             });
                         }
-                    })
+                    });
             }
         });
-    }
+    };
 
     const handleUpdate = (service) => {
         setModalVisible(true);
@@ -103,69 +95,81 @@ const MyServices = ({title}) => {
 
     return (
         <div className="bg-blue-50 p-8 rounded-lg shadow-md m-6">
-
             <Helmet>
                 <title>{title || "My Services | ServeInsight"}</title>
             </Helmet>
 
             <h2 className="text-3xl font-bold text-primary mb-6 text-center">My Services</h2>
-            <div className="w-3/4 md:w-1/2 mx-auto my-4">
-                <label className="input input-bordered flex items-center gap-2">
-                    <input type="text" className="grow" value={searchQuery}
-                        onChange={handleSearch} placeholder="Search with Service Title" />
-                    <FcSearch />
-                </label>
-            </div>
-            <div className="overflow-x-auto bg-white rounded-lg shadow-md p-4">
-                <table className="table-auto w-full text-left border-collapse">
-                    {/* Table Header */}
-                    <thead>
-                        <tr className="bg-primary text-white">
-                            <th className="p-4 text-sm md:text-base">Index</th>
-                            <th className="p-4 text-sm md:text-base">Service Title</th>
-                            <th className="p-4 text-sm md:text-base">Added Date</th>
-                            <th className="p-4 text-sm md:text-base">Price (in BDT)</th>
-                            <th className="p-4 text-sm md:text-base">Actions</th>
-                        </tr>
-                    </thead>
-                    {/* Table Body */}
-                    <tbody>
-                        {filteredServices.map((service, index) => (
-                            <tr
-                                key={service._id}
-                                className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                                    } hover:bg-gray-200`}
-                            >
-                                <td className="p-4 text-gray-700 text-xs md:text-sm">{index + 1}</td>
-                                <td className="p-4 text-gray-800 text-xs md:text-sm">{service.title}</td>
-                                <td className="p-4 text-gray-600 text-xs md:text-sm">{service.addedDate}</td>
-                                <td className="p-4 text-gray-600 text-xs md:text-sm">{service.price}</td>
-                                <td className="p-4">
-                                    <div className="flex space-x-2">
-                                        <button
-                                            onClick={() => handleUpdate(service)}
-                                            className="btn btn-accent btn-xs md:btn-sm">
-                                            Update
-                                        </button>
-                                        <button
-                                            onClick={() => handleDelete(service._id)}
-                                            className="btn btn-error btn-xs md:btn-sm">
-                                            Delete
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                {filteredServices.length === 0 && (
-                    <p className="text-center text-gray-500 mt-4">
-                        {searchQuery
-                            ? "No services match your search query!"
-                            : "No services added yet! Please add a service to get started."}
-                    </p>
-                )}
-            </div>
+
+            {loading ? (
+                <div className="flex justify-center items-center h-40">
+                    <span className="loading loading-spinner loading-lg"></span>
+                </div>
+            ) : (
+                <>
+                    <div className="w-3/4 md:w-1/2 mx-auto my-4">
+                        <label className="input input-bordered flex items-center gap-2">
+                            <input
+                                type="text"
+                                className="grow"
+                                value={searchQuery}
+                                onChange={handleSearch}
+                                placeholder="Search with Service Title"
+                            />
+                            <FcSearch />
+                        </label>
+                    </div>
+
+                    <div className="overflow-x-auto bg-white rounded-lg shadow-md p-4">
+                        <table className="table-auto w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-primary text-white">
+                                    <th className="p-4 text-sm md:text-base">Index</th>
+                                    <th className="p-4 text-sm md:text-base">Service Title</th>
+                                    <th className="p-4 text-sm md:text-base">Added Date</th>
+                                    <th className="p-4 text-sm md:text-base">Price (in BDT)</th>
+                                    <th className="p-4 text-sm md:text-base">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredServices.map((service, index) => (
+                                    <tr
+                                        key={service._id}
+                                        className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"} hover:bg-gray-200`}
+                                    >
+                                        <td className="p-4 text-gray-700 text-xs md:text-sm">{index + 1}</td>
+                                        <td className="p-4 text-gray-800 text-xs md:text-sm">{service.title}</td>
+                                        <td className="p-4 text-gray-600 text-xs md:text-sm">{service.addedDate}</td>
+                                        <td className="p-4 text-gray-600 text-xs md:text-sm">{service.price}</td>
+                                        <td className="p-4">
+                                            <div className="flex space-x-2">
+                                                <button
+                                                    onClick={() => handleUpdate(service)}
+                                                    className="btn btn-accent btn-xs md:btn-sm">
+                                                    Update
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(service._id)}
+                                                    className="btn btn-error btn-xs md:btn-sm">
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+
+                        {filteredServices.length === 0 && (
+                            <p className="text-center text-gray-500 mt-4">
+                                {searchQuery
+                                    ? "No services match your search query!"
+                                    : "No services added yet! Please add a service to get started."}
+                            </p>
+                        )}
+                    </div>
+                </>
+            )}
 
             {modalVisible && currentService && (
                 <UpdateServices

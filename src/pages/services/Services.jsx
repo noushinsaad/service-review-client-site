@@ -12,10 +12,13 @@ const Services = ({ title }) => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true); 
+
     const servicesPerPage = 4;
 
     useEffect(() => {
-        axios.get('https://service-review-server-site-five.vercel.app/services')
+        setLoading(true); 
+        axios.get("https://service-review-server-site-five.vercel.app/services")
             .then(res => {
                 setServices(res.data);
                 setFilteredServices(res.data);
@@ -23,12 +26,15 @@ const Services = ({ title }) => {
                 const uniqueCategories = ["All", ...new Set(res.data.map(service => service.category))];
                 setCategories(uniqueCategories);
             })
-            .catch(err => console.error(err));
+            .catch(err => console.error(err))
+            .finally(() => setLoading(false)); 
     }, []);
 
     const handleSearch = async (e) => {
         const query = e.target.value.trim();
         setSearchQuery(query);
+
+        setLoading(true); 
 
         try {
             const res = await axios.get(`https://service-review-server-site-five.vercel.app/services/search?query=${query}`);
@@ -42,6 +48,8 @@ const Services = ({ title }) => {
             setCurrentPage(1);
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false); 
         }
     };
 
@@ -77,7 +85,6 @@ const Services = ({ title }) => {
 
     return (
         <div className="mx-10 my-10">
-
             <Helmet>
                 <title>{title || "Services | ServeInsight"}</title>
             </Helmet>
@@ -107,29 +114,37 @@ const Services = ({ title }) => {
                 </select>
             </div>
 
-            <div className="grid gap-6">
-                {currentServices.length > 0 ? (
-                    currentServices.map(service => (
-                        <ServiceCard key={service._id} service={service}></ServiceCard>
-                    ))
-                ) : (
-                    <p>No services found</p>
-                )}
-            </div>
+            {loading ? ( // ✅ Show loader while data is loading
+                <div className="flex justify-center items-center h-40">
+                    <span className="loading loading-spinner loading-lg"></span>
+                </div>
+            ) : (
+                <div>
+                    <div className="grid gap-6">
+                        {currentServices.length > 0 ? (
+                            currentServices.map(service => (
+                                <ServiceCard key={service._id} service={service}></ServiceCard>
+                            ))
+                        ) : (
+                            <p>No services found</p>
+                        )}
+                    </div>
 
-            <div className="flex justify-center mt-8">
-                {[...Array(totalPages).keys()].map(pageNumber => (
-                    <button
-                        key={pageNumber + 1}
-                        onClick={() => handlePageChange(pageNumber + 1)}
-                        className={`btn ${currentPage === pageNumber + 1 ?
-                            "btn bg-[#34A853] hover:bg-[#2c8b4a] text-white" :
-                            "btn bg-amber-500 hover:bg-amber-600 text-white"} mx-1`}
-                    >
-                        {pageNumber + 1}
-                    </button>
-                ))}
-            </div>
+                    <div className="flex justify-center mt-8">
+                        {[...Array(totalPages).keys()].map(pageNumber => (
+                            <button
+                                key={pageNumber + 1}
+                                onClick={() => handlePageChange(pageNumber + 1)}
+                                className={`btn ${currentPage === pageNumber + 1 ?
+                                    "bg-[#34A853] hover:bg-[#2c8b4a] text-white" :
+                                    "bg-amber-500 hover:bg-amber-600 text-white"} mx-1`}
+                            >
+                                {pageNumber + 1}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
